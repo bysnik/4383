@@ -1,0 +1,47 @@
+name: Test Game
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Make test.sh executable
+      run: chmod +x test.sh
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb libgl1-mesa-dri libgl1-mesa-glx libglu1-mesa libfontconfig1 libfreetype6 libx11-6 libxext6 libxrender1 libxrandr2 libxfixes3 libxcursor1 libxinerama1 libxi6 libxxf86vm1 libxkbcommon0 libxkbcommon-x11-0
+
+    - name: Download Ren'Py SDK
+      run: |
+        wget https://www.renpy.org/dl/8.5.2/renpy-8.5.2-sdk.tar.bz2
+        tar -xjf renpy-8.5.2-sdk.tar.bz2
+        echo "RENPY=$(pwd)/renpy-8.5.2-sdk/renpy.sh" >> $GITHUB_ENV
+
+    - name: Run tests
+      run: |
+        xvfb-run -a ./test.sh
+
+    - name: Upload test logs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-logs
+        path: test_output.log
+
+    - name: Upload screenshots
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-screenshots
+        path: tests/screenshots/
