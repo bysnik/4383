@@ -14,8 +14,6 @@ testsuite my_tests:
 
     testcase full_game:
         run Jump("start")
-        if screen "main_menu":
-            click "Start"
         skip until label end_of_game
         exit
 
