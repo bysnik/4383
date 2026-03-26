@@ -4,6 +4,8 @@ cache
 
 # Compiled script files. These are important for saving, and so should
 # be preserved by developer and build systems after the game has been released.
+*.rpyc
+*.rpymc
 **/*.rpyc
 **/*.rpymc
 
@@ -11,3 +13,5 @@ cache
 **/*.bak
 **/*.new
 **/*.old
+
+test_output.log

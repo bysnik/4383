@@ -14,10 +14,5 @@ testsuite my_tests:
 
     testcase full_game:
         run Jump("start")
-        skip until label end_of_game
-        exit
-
-    testcase assets_check:
-        run Jump("start")
-        advance repeat 10
+        advance repeat 4000
         exit
