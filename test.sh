@@ -13,6 +13,7 @@ fi
 echo "Используется Ren'Py: $RENPY"
 
 GAME_DIR="${1:-..}"               # Путь к папке игры (первый аргумент или текущая)
+TEST_SUITE="${2:-my_tests}"       # Имя тестового набора (второй аргумент или my_tests)
 
 if ! command -v "$RENPY" &> /dev/null; then
     echo -e "\033[0;31mОшибка: команда '$RENPY' не найдена.\033[0m"
@@ -25,8 +26,8 @@ if [ ! -d "$GAME_DIR" ]; then
     exit 1
 fi
 
-echo "Запуск тестов для игры в $GAME_DIR..."
-"$RENPY" "$GAME_DIR" test 2>&1 | tee test_output.log
+echo "Запуск тестов для игры в $GAME_DIR (набор: $TEST_SUITE)..."
+"$RENPY" "$GAME_DIR" test "$TEST_SUITE" 2>&1 | tee test_output.log
 EXIT_CODE=${PIPESTATUS[0]}
 
 if [ $EXIT_CODE -ne 0 ]; then

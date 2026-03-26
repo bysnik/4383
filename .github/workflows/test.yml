@@ -35,7 +35,7 @@ jobs:
       env:
         RENPY: "${{ github.workspace }}/renpy-8.5.2-sdk/renpy.sh"
       run: |
-        xvfb-run -a ./test.sh
+        xvfb-run -a ./test.sh .. my_tests
 
     - name: Upload test logs
       if: always()
