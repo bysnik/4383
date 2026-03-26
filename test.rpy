@@ -8,7 +8,7 @@ python early:
 
 testsuite my_tests:
     setup:
-        $ _test.timeout = 600.0          # 10 минут на весь тест
+        $ _test.timeout = 600.0
         $ _test.maximum_framerate = True
         $ _test.transition_timeout = 0.1
 
@@ -16,9 +16,7 @@ testsuite my_tests:
         run Jump("start")
         if screen "main_menu":
             click "Start"
-        skip
-        until label "end_of_game"
-        screenshot "final_screen.png"
+        skip until label "end_of_game"
         exit
 
     testcase assets_check:
