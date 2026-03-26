@@ -14,6 +14,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Remove duplicate testcase files
+      run: |
+        find . -name "testcases.rpy" -type f -exec rm -v {} \;
+
     - name: Make test.sh executable
       run: chmod +x test.sh
 
@@ -36,17 +40,3 @@ jobs:
         RENPY: "${{ github.workspace }}/renpy-8.5.2-sdk/renpy.sh"
       run: |
         xvfb-run -a ./test.sh .. my_tests
-
-    - name: Upload test logs
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-logs
-        path: test_output.log
-
-    - name: Upload screenshots
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-screenshots
-        path: tests/screenshots/
