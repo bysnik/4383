@@ -32,6 +32,8 @@ jobs:
         echo "RENPY=$(pwd)/renpy-8.5.2-sdk/renpy.sh" >> $GITHUB_ENV
 
     - name: Run tests
+      env:
+        RENPY: "${{ github.workspace }}/renpy-8.5.2-sdk/renpy.sh"
       run: |
         xvfb-run -a ./test.sh
 
