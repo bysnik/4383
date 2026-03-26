@@ -55,4 +55,4 @@ jobs:
         RENPY: "${{ github.workspace }}/renpy-8.5.2-sdk/renpy.sh"
       run: |
         cd renpy-8.5.2-sdk/4383
-        xvfb-run -a ./renpy.sh game test my_tests
+        xvfb-run -a RENPY game test my_tests
