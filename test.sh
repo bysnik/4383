@@ -1,7 +1,17 @@
 #!/bin/bash
-# run_tests.sh – запуск тестов Ren'Py и анализ результатов
 
-RENPY="/home/bystrovno/Загрузки/renpy-8.5.2-sdk/renpy.sh"          # Команда запуска Ren'Py
+# Если переменная окружения RENPY не задана, пытаемся найти renpy в PATH
+if [ -z "$RENPY" ]; then
+    if command -v renpy &> /dev/null; then
+        RENPY="renpy"
+    else
+        echo "Ошибка: переменная RENPY не задана и renpy не найден в PATH." >&2
+        exit 1
+    fi
+fi
+
+echo "Используется Ren'Py: $RENPY"
+
 GAME_DIR="${1:-..}"               # Путь к папке игры (первый аргумент или текущая)
 
 if ! command -v "$RENPY" &> /dev/null; then
