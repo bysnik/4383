@@ -14,12 +14,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Remove duplicate testcase files
+    - name: Debug: list repository contents
       run: |
-        find . -name "testcases.rpy" -type f -exec rm -v {} \;
-
-    - name: Make test.sh executable
-      run: chmod +x test.sh
+        echo "=== Содержимое репозитория ==="
+        ls -la
+        echo "=== Дерево файлов ==="
+        find . -type f | head -20
 
     - name: Install system dependencies
       run: |
@@ -35,8 +35,24 @@ jobs:
         tar -xjf renpy-8.5.2-sdk.tar.bz2
         echo "RENPY=$(pwd)/renpy-8.5.2-sdk/renpy.sh" >> $GITHUB_ENV
 
+    - name: Create game directory inside SDK and copy files
+      run: |
+        echo "=== Создаём папку game внутри SDK ==="
+        mkdir -p renpy-8.5.2-sdk/4383/game
+        echo "=== Копируем все файлы из репозитория (кроме .git) ==="
+        rsync -av --exclude='.git' --exclude='renpy-8.5.2-sdk' ./ renpy-8.5.2-sdk/4383/game/
+        echo "=== Результат копирования ==="
+        ls -la renpy-8.5.2-sdk/4383/game/
+        echo "=== Поиск файлов testcases.rpy в скопированной папке ==="
+        find renpy-8.5.2-sdk/game -name "testcases.rpy" -type f
+
+    - name: Make test.sh executable (inside the game directory)
+      run: |
+        chmod +x renpy-8.5.2-sdk/4383/game/test.sh
+
     - name: Run tests
       env:
         RENPY: "${{ github.workspace }}/renpy-8.5.2-sdk/renpy.sh"
       run: |
-        xvfb-run -a ./test.sh .. my_tests
+        cd renpy-8.5.2-sdk
+        xvfb-run -a ./renpy.sh game test my_tests
