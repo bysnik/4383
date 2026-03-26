@@ -3375,4 +3375,7 @@ label part5:
 
     "Потом ничего."
 
+    jump end_of_game
+
+label end_of_game:
     return
