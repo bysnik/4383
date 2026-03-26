@@ -29,15 +29,6 @@ jobs:
           libxfixes3 libxcursor1 libxinerama1 libxi6 libxxf86vm1 libxkbcommon0 \
           libxkbcommon-x11-0
 
-    - name: Install system dependencies and virtual sound device
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y xvfb libgl1-mesa-dri libgl1-mesa-glx libglu1-mesa \
-          libfontconfig1 libfreetype6 libx11-6 libxext6 libxrender1 libxrandr2 \
-          libxfixes3 libxcursor1 libxinerama1 libxi6 libxxf86vm1 libxkbcommon0 \
-          libxkbcommon-x11-0 alsa-utils
-        sudo modprobe snd-dummy
-
     - name: Download Ren'Py SDK
       run: |
         wget https://www.renpy.org/dl/8.5.2/renpy-8.5.2-sdk.tar.bz2
@@ -64,4 +55,6 @@ jobs:
         RENPY: "${{ github.workspace }}/renpy-8.5.2-sdk/renpy.sh"
       run: |
         cd renpy-8.5.2-sdk
+        export SDL_AUDIODRIVER=dummy
+        export ALSA_CONFIG_PATH=/dev/null
         xvfb-run -a ./renpy.sh 4383 test my_tests
