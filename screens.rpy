@@ -311,6 +311,9 @@ screen navigation():
 
         textbutton _("Настройки") action ShowMenu("preferences")
 
+        if persistent.unlocked_words:
+            textbutton _("Глоссарий") action ShowMenu("glossary")
+
         if _in_replay:
 
             textbutton _("Завершить повтор") action EndReplay(confirm=True)
@@ -359,12 +362,28 @@ screen main_menu():
     add gui.main_menu_background
 
     ## Эта пустая рамка затеняет главное меню.
-    frame:
-        style "main_menu_frame"
+    #frame:
+    #    style "main_menu_frame"
 
-    ## Оператор use включает отображение другого экрана в данном. Актуальное
-    ## содержание главного меню находится на экране навигации.
-    use navigation
+    ## Вместо use navigation добавляем горизонтальный блок кнопок
+    hbox:
+        xalign 0.5          # центрирование по горизонтали
+        yalign 0.67         # 2/3 от верха (треть от низа)
+        spacing 20          # расстояние между кнопками
+        style_prefix "main_menu_button"   # добавляем префикс стилей
+
+        textbutton _("Начать") action Start() style "main_menu_button"
+        textbutton _("Загрузить") action ShowMenu("load") style "main_menu_button"
+        if persistent.unlocked_words:
+            textbutton _("Глоссарий") action ShowMenu("glossary") style "main_menu_button"
+        textbutton _("Настройки") action ShowMenu("preferences") style "main_menu_button"
+        textbutton _("Об игре") action ShowMenu("about") style "main_menu_button"
+
+        # Добавляем помощь и выход, если они нужны
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+            textbutton _("Помощь") action ShowMenu("help") style "main_menu_button"
+        if renpy.variant("pc"):
+            textbutton _("Выход") action Quit(confirm=not main_menu) style "main_menu_button"
 
     if gui.show_name:
 
@@ -879,7 +898,6 @@ style slider_button_text:
 
 style slider_vbox:
     xsize 1350
-
 
 ## Экран истории ###############################################################
 ##
@@ -1618,3 +1636,66 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 1800
+
+## Стили для кнопок главного меню
+style main_menu_button_text:
+    color "#00F"           # ярко-синий
+    hover_color "#0AF"     # голубой при наведении
+    size 90                # размер шрифта (по желанию)
+
+style main_menu_button:
+    background None        # прозрачный фон (оставляем как есть)
+
+
+## Экран Кастомный ###############################################################
+##
+## Этот экран показывает авторскую информацию об игре и Ren'Py.
+##
+## В этом экране нет ничего особенного, и он служит только примером того, каким
+## можно сделать свой экран.
+
+screen glossary(initial_term=None):
+    tag menu
+
+    # Если передан начальный термин, устанавливаем его при показе экрана
+    if initial_term is not None:
+        on "show" action SetVariable("selected_term", initial_term)
+
+    use game_menu(_("Глоссарий")):
+        hbox:
+            spacing 50
+            xalign 0.5
+
+            # Левая колонка – список разблокированных терминов с прокруткой
+            viewport:
+                scrollbars "vertical"
+                mousewheel True
+                draggable True
+                xsize 700
+                ysize 1650
+                vbox:
+                    spacing 5
+                    for term in sorted(persistent.unlocked_words):
+                        textbutton term:
+                            action SetVariable("selected_term", term)
+                            style "glossary_button"
+
+            # Правая колонка – описание и картинка (с прокруткой)
+            viewport:
+                scrollbars "vertical"
+                mousewheel True
+                draggable True
+                xsize 2000
+                ysize 1650
+                vbox:
+                    spacing 15
+                    if selected_term and selected_term in persistent.unlocked_words:
+                        text glossary_terms[selected_term]["desc"] style "about_text" substitute False
+                        $ img = glossary_terms[selected_term].get("img")
+                        if img:
+                            add "images/glossary/" + img + ".png":
+                                xalign 0.5
+                                xsize 1900
+                                fit "contain"
+                    else:
+                        text _("Выберите термин") style "about_text"
