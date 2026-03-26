@@ -16,7 +16,7 @@ testsuite my_tests:
         run Jump("start")
         if screen "main_menu":
             click "Start"
-        skip until label "end_of_game"
+        skip until label end_of_game
         exit
 
     testcase assets_check:
