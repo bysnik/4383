@@ -1,0 +1,22 @@
+
+[rpytest] Starting test run
+[rpytest] Platform:      Linux-6.12.74-6.12-alt1-x86_64-with-glibc2.38
+[rpytest] Python:        3.12.8
+[rpytest] Ren'Py:        Ren'Py 8.5.2.26010301
+[rpytest] Game Version:  1.0
+
+[rpytest] [exc] + global
+[rpytest] [exc]   - full_game
+[rpytest] [exc]   - full_game (16.346 s)
+[rpytest] [exc]   - assets_check
+[rpytest] [exc]   - assets_check (0.041 s)
+
+[rpytest] Test outcomes (Summary)
+[rpytest] Test suites:     1 |     1 passed |     0 xfailed |     0 failed |     0 xpassed |     0 skipped |     0 not run
+[rpytest] Test cases :     2 |     2 passed |     0 xfailed |     0 failed |     0 xpassed |     0 skipped |     0 not run
+[rpytest] Test hooks :     1 |     1 passed |     0 xfailed |     0 failed |     0 xpassed |     0 skipped |     0 not run
+[rpytest] Assertions :     0 |     0 passed |     0 xfailed |     0 failed |     0 xpassed | 
+
+[rpytest] Time: 16.956 s
+[rpytest] Status: PASSED 
+

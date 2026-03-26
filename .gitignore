@@ -1,0 +1,13 @@
+# Directories that Ren'Py changes files in.
+saves
+cache
+
+# Compiled script files. These are important for saving, and so should
+# be preserved by developer and build systems after the game has been released.
+**/*.rpyc
+**/*.rpymc
+
+# Files Ren'Py can generate.
+**/*.bak
+**/*.new
+**/*.old
