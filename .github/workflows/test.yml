@@ -44,7 +44,7 @@ jobs:
         echo "=== Результат копирования ==="
         ls -la renpy-8.5.2-sdk/4383/game/
         echo "=== Поиск файлов testcases.rpy в скопированной папке ==="
-        find renpy-8.5.2-sdk/game -name "testcases.rpy" -type f
+        find renpy-8.5.2-sdk/4383/game -name "testcases.rpy" -type f
 
     - name: Make test.sh executable (inside the game directory)
       run: |
