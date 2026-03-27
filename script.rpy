@@ -1,9 +1,9 @@
 ﻿# --- Assets (Short Names) ---
 
 # Characters
-define k = Character("Ким", image="k")
+define k = Character("Ким")
 define mom = Character("Мама")
-define mon = Character("Моник")
+define mon = Character("Моник", image="mon")
 define cop = Character("Коп") # это один перс для всех копов.
 define path = Character("Патологоанатом")
 define head = Character("Воспитатель")
@@ -52,12 +52,15 @@ image bg white = "images/bg/bg_white.jpg"
 # Sprites
 image telephone = "images/sprites/telephone.png"
 
-image k normal = "images/sprites/k_normal.png"
-image k sad = "images/sprites/k_sad.png"
-image k thinking = "images/sprites/k_thinking.png"
-image k angry = "images/sprites/k_angry.png"
+#image k normal = "images/sprites/k_normal.png"
+#image k sad = "images/sprites/k_sad.png"
+#image k thinking = "images/sprites/k_thinking.png"
+#image k angry = "images/sprites/k_angry.png"
+
 image mon happy = "images/sprites/mon_happy.png"
-image mon worried = "images/sprites/mon_worried.png"
+image mon worried = "images/sprites/mon_happy.png"
+image mon pensive = "images/sprites/mon_happy.png"
+
 image weyd normal = "images/sprites/weyd_normal.png"
 image cop tired = "images/sprites/cop_tired.png" 
 image path normal = "images/sprites/path_normal.png"
