@@ -19,7 +19,6 @@ define config.name = _("4383")
 
 define gui.show_name = True
 
-
 ## Версия игры.
 
 define config.version = "0.0.1"
@@ -109,12 +108,12 @@ define config.intra_transition = dissolve
 
 ## Переход, используемый после загрузки слота сохранения.
 
-define config.after_load_transition = None
+define config.after_load_transition = dissolve
 
 
 ## Используется при входе в главное меню после того, как игра закончится.
 
-define config.end_game_transition = None
+define config.end_game_transition = dissolve
 
 
 ## Переменная, устанавливающая переход, когда старт игры не существует. Вместо

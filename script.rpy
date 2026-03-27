@@ -1,5 +1,43 @@
 ﻿# --- Assets (Short Names) ---
 
+# Создание дополнительного слоя выше master, но ниже screens
+init python:
+    renpy.add_layer(
+        "effects",          
+        above="master",
+        menu_clear=True,    
+        sticky=False        
+    )
+
+transform scroll_diagonal:
+    # Старт: за левым верхним углом
+    xoffset -1000
+    yoffset -1000
+    rotate 45
+    # Движение: вправо-вниз по диагонали
+    linear 7.0 xoffset 0 yoffset 0
+    repeat
+
+screen mosaic_text_background():
+    layer "effects"
+    
+    python:
+        rows = 10
+        cols = 20
+        spacing_x = 500
+        spacing_y =500
+        start_x = -500
+        start_y = 100
+    
+    for r in range(rows):
+        for c in range(cols):
+            text "EARLY":
+                xpos start_x + (c * spacing_x)
+                ypos start_y + (r * spacing_y)
+                color "#3b3b3b59"
+                size 150
+                at scroll_diagonal
+
 # Characters
 define k = Character("Ким")
 define mom = Character("Мама")

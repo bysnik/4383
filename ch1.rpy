@@ -1,5 +1,6 @@
 label part1:
     scene bg black
+    show screen mosaic_text_background
     play music "audio/audio_theme.ogg" fadein 2.0
     play sound "audio/audio_rain.ogg" loop
 
@@ -79,7 +80,7 @@ label part1:
 
     "Мама звонила каждое утро в одно и то же время. 8:47."
 
-    show telephone at right
+    show telephone onlayer screens at right
 
     "Я знала это, потому что часы на стене показывали 8:47 каждое утро, когда мама звонила."
 
@@ -147,8 +148,7 @@ label part1:
 
     k "— Я тоже тебя люблю, мам."
 
-    scene bg office_window
-    with dissolve
+    hide telephone onlayer screens
 
     "Я положила трубку. На столе остывала вторая чашка кофе, которую я так и не выпила."
 
@@ -166,7 +166,7 @@ label part1:
     scene bg office_home
     with dissolve
 
-    show mon happy
+    show mon happy onlayer screens 
 
     mon "— Ты опять не спала? Я принесла еду. Настоящую еду, а не эту... бурду."
 
@@ -210,7 +210,8 @@ label part1:
 
     k "Ты знаешь, вы с Вейдом... вы хорошая пара."
 
-    show mon pensive
+    hide mon happy onlayer screens 
+    show mon pensive onlayer screens
 
     "Моник замерла. Посмотрела на меня с выражением, которое я не могла расшифровать."
 
@@ -218,11 +219,13 @@ label part1:
 
     k "Правда. В этом городе редко кто-то находит своё счастье. Вы нашли. Не портите это."
 
-    show mon happy
+    hide mon pensive onlayer screens
+    show mon happy onlayer screens
 
     "Она улыбнулась, но улыбка была другой — мягче, тише. Потом посмотрела на мои ноги, прикрытые пледом, и отвела взгляд."
 
-    show mon pensive
+    hide mon happy onlayer screens
+    show mon pensive onlayer screens
 
     "Я знала этот взгляд. Все отводили взгляд. Потому что не знали, что сказать. Потому что слова «мне жаль» — это не то, что ты хочешь слышать, а слова «всё будет хорошо» — это ложь, которую никто не покупает."
 
@@ -230,7 +233,8 @@ label part1:
 
     k "С кем? С клиентами? Они обычно приходят с чужими тайнами, а не с цветами."
 
-    show mon worried
+    hide mon pensive onlayer screens
+    show mon worried onlayer screens
 
     mon "Я серьёзно, Кимми. Ты не можешь всё время проводить в этом офисе."
 
@@ -244,13 +248,14 @@ label part1:
 
     "Она наклонилась, поцеловала меня в щёку."
 
-    show mon happy
+    hide mon worried onlayer screens
+    show mon happy onlayer screens
 
     mon "Не думай. Приходи. Вейд будет рад тебя видеть."
 
     k "Я тоже буду рада его видеть."
 
-    hide mon
+    hide mon happy onlayer screens
 
     "Она ушла, оставив на столе пакет с едой и запах духов, которые напоминали о лете."
 
@@ -269,7 +274,7 @@ label part1:
 
     "Красные глаза, вечно мятый пиджак, папка с делом, которое никто не хочет брать. Я знала таких. Я была такими."
 
-    show telephone at right
+    show telephone onlayer screens at right
 
     cop "Пять-с-плюсом, есть работа. Та, про которую ты спрашивала."
 
@@ -281,7 +286,7 @@ label part1:
 
     cop "Седьмая авеню. Склад у старой железнодорожной ветки. Твой старый знакомый."
 
-    scene bg office_worbench
+    hide telephone onlayer screens at right
 
     "Я положила трубку и посмотрела на свои ноги. Бесполезные, бледные, с атрофированными мышцами."
 
@@ -574,7 +579,7 @@ label part1:
 
     "У крыльца меня встретила женщина лет сорока. На ней был цветастый фартук поверх синего платья, волосы собраны в пучок, на груди — бейджик с именем."
 
-    show head normal
+    show head normal onlayer screens
     with dissolve
 
     "В её глазах я увидела ту самую усталость, которая бывает у людей, слишком долго присматривающих за чужими детьми."
@@ -657,6 +662,7 @@ label part1:
 
     "Я не ответила. Может, для неё — да. Но для меня забывать было проклятием. Потому что кто-то вложил эту фотографию в рот мёртвому человеку. Кто-то хотел, чтобы я вспомнила. И я должна была узнать, почему. Даже если память окажется хуже, чем пустота."
 
+    hide head normal onlayer screens
     scene bg office_worbench
     with dissolve
 
@@ -676,7 +682,7 @@ label part1:
 
     "Я набрала номер. Гудки были длинными, международными, и каждый из них отдавался в груди глухим стуком."
 
-    show telephone at right
+    show telephone onlayer screens at right
 
     "Я смотрела в окно, на улицу, где торговец хот-догами открывал свою тележку, и думала о том, как странно устроена жизнь. Кто-то продаёт еду, кто-то ищет убийц, а кто-то просто пытается забыть."
 
@@ -706,6 +712,7 @@ label part1:
 
     play sound "audio/audio_phone.ogg"
 
+    hide telephone onlayer screens
     "Клик. Тишина."
 
     "Я смотрела на телефон в руке и чувствовала, как что-то тяжёлое оседает в груди. Она знала. Она помнила. И она не хотела говорить."
