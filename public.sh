@@ -38,7 +38,7 @@ else
 fi
 
 # Переключаемся на ветку game
-#git checkout game - запомнили, игра не работает в вебе с lfs
+git checkout game - запомнили, игра не работает в вебе с lfs
 
 # Очищаем всё, кроме .git
 git rm -rf . >/dev/null 2>&1 || true
@@ -47,7 +47,7 @@ find . -mindepth 1 -not -path "./.git*" -delete
 # Копируем файлы сборки
 cp -r "$web_build_dir"/* .
 
-git lfs track game.zip
+#git lfs track game.zip лфс зло с ренапем не робит
 
 # Добавляем все файлы
 git add .
