@@ -47,6 +47,8 @@ find . -mindepth 1 -not -path "./.git*" -delete
 # Копируем файлы сборки
 cp -r "$web_build_dir"/* .
 
+git lfs track game.zip
+
 # Добавляем все файлы
 git add .
 
