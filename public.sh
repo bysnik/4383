@@ -38,7 +38,7 @@ else
 fi
 
 # Переключаемся на ветку game
-git checkout game
+#git checkout game - запомнили, игра не работает в вебе с lfs
 
 # Очищаем всё, кроме .git
 git rm -rf . >/dev/null 2>&1 || true
