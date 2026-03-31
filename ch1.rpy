@@ -1,5 +1,5 @@
 label part1:
-    scene bg black
+    scene bg black 
     show screen mosaic_text_background
     play music "audio/audio_theme.ogg" fadein 2.0
     play sound "audio/audio_rain.ogg" loop
@@ -20,7 +20,7 @@ label part1:
 
     "Теперь это просто имя на двери обшарпанного офиса на Четвёртой улице, рядом с круглосуточной забегаловкой и ломбардом, где принимают всё, что не прибито гвоздями."
 
-    scene bg office_full
+    scene bg office_full at chromatic_10
 
     $ glossary_add_new_word("Частный детектив")
 
@@ -40,7 +40,7 @@ label part1:
 
     "А иногда — просто благодарность. С ней я могла купить разве что чашку кофе, но в этом городе даже благодарность — редкость."
 
-    scene bg office_window
+    scene bg office_window at chromatic_pulse(amount=20.0, period=2.0)
 
     "Мой офис был моей крепостью, моей тюрьмой, моим единственным убежищем."
 
@@ -556,7 +556,7 @@ label part1:
 
     "Миддлтон был городом, где даже закат выглядел как синяк на теле неба."
 
-    scene bg kindergarten
+    scene bg kindergarten at chromatic_pulse(amount=20.0, period=5.0)
     with dissolve
 
     $ glossary_add_new_word("Детский сад «A-B-C»")
